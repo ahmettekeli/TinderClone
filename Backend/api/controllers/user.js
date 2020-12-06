@@ -143,6 +143,15 @@ const user_signup = (req, res, next) => {
 					res.status(401).json({
 						message: "User does not exist",
 					});
+				} else {
+					User.find({})
+						.exec()
+						.then((nearByUsers) => {})
+						.catch((error) => {
+							res.status(500).json({
+								error: error.message,
+							});
+						});
 				}
 				// get user location here,
 			})

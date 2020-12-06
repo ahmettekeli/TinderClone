@@ -46,6 +46,12 @@ const personalInfoSchema = mongoose.Schema({
 	location: {
 		type: String,
 	},
+	latitude: {
+		type: Number,
+	},
+	longitude: {
+		type: Number,
+	},
 });
 
 module.exports = mongoose.model("PersonalInfo", personalInfoSchema);

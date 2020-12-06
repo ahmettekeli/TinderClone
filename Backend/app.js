@@ -7,14 +7,7 @@ const mongoose = require("mongoose");
 
 const userRoutes = require("./api/routes/users");
 
-const connectionPath =
-	"mongodb+srv://" +
-	process.env.MONGO_ATLAS_USERNAME +
-	":" +
-	process.env.MONGO_ATLAS_PW +
-	"@tinderclone.ya1ob.mongodb.net/" +
-	process.env.MONGO_ATLAS_DBNAME +
-	"?retryWrites=true&w=majority";
+const connectionPath = process.env.CONNECTION_STRING;
 
 mongoose.connect(connectionPath, {
 	useNewUrlParser: true,
