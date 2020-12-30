@@ -6,14 +6,6 @@ const personalInfoSchema = mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	age: {
-		type: Number,
-		required: true,
-	},
-	gender: {
-		type: String,
-		required: true,
-	},
 	photos: [
 		{
 			type: String,
@@ -34,24 +26,9 @@ const personalInfoSchema = mongoose.Schema({
 	city: {
 		type: String,
 	},
-	lookingfor: [
-		{
-			type: String,
-			required: true,
-		},
-	],
-	distance: {
-		type: String,
-	},
-	location: {
-		type: String,
-	},
-	latitude: {
-		type: Number,
-	},
-	longitude: {
-		type: Number,
-	},
 });
 
-module.exports = mongoose.model("PersonalInfo", personalInfoSchema);
+module.exports = {
+	PersonalInfo: mongoose.model("PersonalInfo", personalInfoSchema),
+	personalInfoSchema,
+};

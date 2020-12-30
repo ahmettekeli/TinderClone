@@ -7,16 +7,6 @@ const Helper = require("../utils/helper");
 const baseUrl = process.env.BASE_URL + "users/";
 const saltRounds = 10;
 
-//TODO
-// 1 - fix BASE_URL.
-// 2 - fix Get all.
-// 3 - test update user see how nested personalinfo works?
-// 4 - test handleError test.
-// 5 - outsource res.status().json()
-// 6 - implement user_get_user.
-// 7 - authentication roles...
-// 8 - implement distance calculation (How to find a set of lat long pairs surrounding a 5 miles radius, how to find lat lon pairs withing a 5 mile radius etc.)
-
 const user_signup = (req, res, next) => {
 		User.find({ email: req.body.email })
 			.exec()
@@ -145,8 +135,17 @@ const user_signup = (req, res, next) => {
 					});
 				} else {
 					User.find({})
+						.populate({
+							path: "personalInfo",
+							//select query goes here
+						})
 						.exec()
-						.then((nearByUsers) => {})
+						.then((nearByUsers) => {
+							res.status(200).json({
+								count: nearByUsers.length,
+								users: nearByUsers,
+							});
+						})
 						.catch((error) => {
 							res.status(500).json({
 								error: error.message,
