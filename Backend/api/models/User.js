@@ -37,16 +37,10 @@ const userSchema = mongoose.Schema({
 			default: "Point",
 		},
 	},
-	likes: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "User",
-		},
-	],
-	lookingfor: {
-		type: String,
+	distancePrefrence: {
+		type: Number,
 		required: true,
-		enum: genders,
+		default: 1000, // in meters
 	},
 	agePreference: {
 		min: {
@@ -59,6 +53,23 @@ const userSchema = mongoose.Schema({
 			default: 60,
 			required: true,
 		},
+	},
+	likes: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+		},
+	],
+	dislikes: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+		},
+	],
+	lookingFor: {
+		type: String,
+		required: true,
+		enum: genders,
 	},
 	isActive: {
 		type: Boolean,
